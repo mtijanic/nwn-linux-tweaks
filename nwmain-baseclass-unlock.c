@@ -18,7 +18,7 @@
 
 #include <sys/mman.h>
 
-void nwmain_patch(void) __attribute__((constructor));
+void nwmain_patch_baseclass(void) __attribute__((constructor));
 
 static void apply_patch(uintptr_t address, size_t patch_size, const uint8_t *patch)
 {
@@ -42,7 +42,7 @@ static void apply_patch(uintptr_t address, size_t patch_size, const uint8_t *pat
     memcpy((void*)address, patch, patch_size);
 }
 
-void nwmain_patch(void)
+void nwmain_patch_baseclass(void)
 {
     //
     // Old: 0f b6 05 fa e0 5f 08    movzx  eax,BYTE PTR ds:0x85fe0fa
