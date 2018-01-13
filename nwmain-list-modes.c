@@ -7,7 +7,7 @@
 //    gcc -m32 -fPIC -shared -o nwmain-list-modes.so nwmain-list-modes.c
 //
 // To run, add nwmain-list-modes.so to LD_PRELOAD before running nwmain
-//    LD_PRELOAD=./nwmain-list-modes.so ; ./nwmain
+//    LD_PRELOAD=./nwmain-list-modes.so ./nwmain
 
 #include <inttypes.h>
 

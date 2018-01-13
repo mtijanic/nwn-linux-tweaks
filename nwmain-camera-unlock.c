@@ -6,7 +6,7 @@
 //    gcc -m32 -fPIC -shared -o nwmain-camera-unlock.so nwmain-camera-unlock.c
 //
 // To run, add nwmain-camera-unlock.so to LD_PRELOAD before running nwmain
-//    LD_PRELOAD=./nwmain-camera-unlock.so ; ./nwmain
+//    LD_PRELOAD=./nwmain-camera-unlock.so ./nwmain
 
 #define _GNU_SOURCE 1
 #include <stdio.h>
