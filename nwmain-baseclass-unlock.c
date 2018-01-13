@@ -20,7 +20,7 @@
 
 void nwmain_patch_baseclass(void) __attribute__((constructor));
 
-static void apply_patch(uintptr_t address, size_t patch_size, const uint8_t *patch)
+static void apply_patch(uintptr_t address, const uint8_t *patch, size_t patch_size)
 {
     uintptr_t page = address & ~0xFFF;
     if (mprotect((void*)page, (address-page) + patch_size, PROT_WRITE | PROT_READ | PROT_EXEC))
@@ -55,5 +55,5 @@ void nwmain_patch_baseclass(void)
     // Patch hardcodes this to 127 instead.
     //
     const uint8_t class_list_patch[] = {0xb8, 0x7f, 0x00, 0x00, 0x00, 0x90, 0x90};
-    apply_patch(0x82320b0, sizeof(class_list_patch), class_list_patch);
+    apply_patch(0x82320b0, class_list_patch, sizeof(class_list_patch));
 }

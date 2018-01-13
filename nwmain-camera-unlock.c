@@ -17,7 +17,7 @@
 
 void nwmain_patch_camera(void) __attribute__((constructor));
 
-static void apply_patch(uintptr_t address, size_t patch_size, const uint8_t *patch)
+static void apply_patch(uintptr_t address, const uint8_t *patch, size_t patch_size)
 {
     uintptr_t page = address & ~0xFFF;
     if (mprotect((void*)page, (address-page) + patch_size, PROT_WRITE | PROT_READ | PROT_EXEC))
@@ -48,19 +48,19 @@ void nwmain_patch_camera(void)
     const float camera_angle_max    = 200.0f; // Original: 89.0f
     const float fog_distance        =  90.0f; // Original: 45.0f
 
-    apply_patch(0x81a6a62, &camera_distance_min, sizeof(camera_distance_min));
-    apply_patch(0x81a6d62, &camera_distance_min, sizeof(camera_distance_min));
+    apply_patch(0x81a6a62, (const uint8_t*)&camera_distance_min, sizeof(camera_distance_min));
+    apply_patch(0x81a6d62, (const uint8_t*)&camera_distance_min, sizeof(camera_distance_min));
 
-    apply_patch(0x81a6a6c, &camera_distance_max, sizeof(camera_distance_max));
-    apply_patch(0x81a6d6c, &camera_distance_max, sizeof(camera_distance_max));
+    apply_patch(0x81a6a6c, (const uint8_t*)&camera_distance_max, sizeof(camera_distance_max));
+    apply_patch(0x81a6d6c, (const uint8_t*)&camera_distance_max, sizeof(camera_distance_max));
 
-    apply_patch(0x81a6a76, &camera_angle_min, sizeof(camera_angle_min));
-    apply_patch(0x81a6d76, &camera_angle_min, sizeof(camera_angle_min));
+    apply_patch(0x81a6a76, (const uint8_t*)&camera_angle_min, sizeof(camera_angle_min));
+    apply_patch(0x81a6d76, (const uint8_t*)&camera_angle_min, sizeof(camera_angle_min));
 
-    apply_patch(0x81a6a80, &camera_angle_max, sizeof(camera_angle_max));
-    apply_patch(0x81a6d80, &camera_angle_max, sizeof(camera_angle_max));
+    apply_patch(0x81a6a80, (const uint8_t*)&camera_angle_max, sizeof(camera_angle_max));
+    apply_patch(0x81a6d80, (const uint8_t*)&camera_angle_max, sizeof(camera_angle_max));
 
-    apply_patch(0x84c767b, &fog_distance, sizeof(fog_distance));
+    apply_patch(0x84c767b, (const uint8_t*)&fog_distance, sizeof(fog_distance));
 
     const uint8_t dist_max = 0xa0; // Original 0xe4
     apply_patch(0x81a6a68, &dist_max, sizeof(dist_max));
