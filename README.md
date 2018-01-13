@@ -8,6 +8,20 @@ To load multiple libraries, separate them by spaces in LD_PRELOAD:
 
     LD_PRELOAD=./nwmain-camera-unlock.so ./nwmain-baseclass-unlock.so ./nwmain
 
+# Tweaks
+
+## nwmain-baseclass-unlock
+
+Unlocks additional base class selection at character creation.
+
+## nwmain-camera-unlock
+
+Unlocks the camera angle and distance, and increases the fog rendering distance.
+
+## nwmain-list-modes
+
+Unlocks selection of various resolutions in the in game options menu.
+
 # Binaries
 
 Prebuilt binaries are included in the bin/ folder for your convenience. It is however recommended you build them yourself per the instructions in the source files.
